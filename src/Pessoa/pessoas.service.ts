@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Pessoa } from './pessoas.entity';
 
 interface Request {
-  pessoaNome: string;
+  PessoaNome: string;
   CodEndereco: number;
   CodContato: number;
 }
@@ -16,9 +16,9 @@ export class PessoasService {
     private pessoasRepository: Repository<Pessoa>,
   ) {}
 
-  async create({ pessoaNome, CodEndereco, CodContato }: Request): Promise<Pessoa> {
+  async create({ PessoaNome, CodEndereco, CodContato }: Request): Promise<Pessoa> {
     const pessoa = await this.pessoasRepository.create({
-      pessoaNome,
+      PessoaNome,
       CodEndereco,
       CodContato,
     });

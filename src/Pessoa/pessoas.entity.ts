@@ -3,14 +3,14 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Pessoa {
   @PrimaryGeneratedColumn()
-  idPessoa: number;
+  id: number;
 
   @Column()
-  pessoaNome: string;
+  PessoaNome: string;
 
   @Column()
-  CodEndereco: number;;
+  CodEndereco: number;
 
-  @Column({ default: true })
+  @Column()
   CodContato: number;
 }

@@ -8,9 +8,9 @@ class PessoasController {
 
   @Post('/')
   async create(@Req() request: Request, @Res() response: Response) {
-    const { pessoaNome, CodEndereco, CodContato } = request.body;
+    const { PessoaNome, CodEndereco, CodContato } = request.body;
 
-    const pessoa = await this.service.create({ pessoaNome, CodEndereco, CodContato});
+    const pessoa = await this.service.create({ PessoaNome, CodEndereco, CodContato});
 
     return response.json(pessoa).send();
   }
