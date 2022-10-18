@@ -1,12 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Caracteristica } from 'src/imovelcaracteristica/imovelcaracteristica.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Area {
     @PrimaryGeneratedColumn()
     idArea: number;
 
-    @Column()
-    CodImovelCaracteristica: number;
+    @OneToOne(() => Caracteristica, imovelCaracteristica=> imovelCaracteristica.idCaracteristica)
+    @JoinColumn()
+    CodImovelCaracteristica: Caracteristica;
 
     @Column()
     AreaImovel: number;

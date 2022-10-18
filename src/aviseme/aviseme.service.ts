@@ -1,12 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Imovel } from 'src/imovel/imovel.entity';
+import { Caracteristica } from 'src/imovelcaracteristica/imovelcaracteristica.entity';
+import { Pessoa } from 'src/pessoa/pessoa.entity';
 import { Repository } from 'typeorm';
 import { AviseMe } from './aviseme.entity';
 
 interface Request {
-    CodPessoa: number;
-    CodImovelCaracteristica: number;
-    CodImovel: number;
+    CodPessoa: Pessoa;
+    CodImovelCaracteristica: Caracteristica;
+    CodImovel: Imovel;
     AviseMeEncontrado: boolean;
 }
 

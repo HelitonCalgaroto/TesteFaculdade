@@ -8,23 +8,23 @@ class ImovelCaracteristicaController {
 
     @Post('/')
     async create(@Req() request: Request, @Res() response: Response) {
-    const { ImovelCaracteristicaCondominio, 
-            ImovelCaracteristicaValorCondominio, 
-            ImovelCaracteristicaQtdQuartos, 
-            ImovelCaracteristicaCozinha, 
-            ImovelCaracteristicaLavanderia, 
-            ImovelCaracteristicaSala, 
-            ImovelCaracteristicaPiscina, 
-            ImovelCaracteristicaVagaGaragem } = request.body;
+    const { CaracteristicaCondominio, 
+            CaracteristicaValorCondominio, 
+            CaracteristicaQtdQuartos, 
+            CaracteristicaCozinha, 
+            CaracteristicaLavanderia, 
+            CaracteristicaSala, 
+            CaracteristicaPiscina, 
+            CaracteristicaVagaGaragem } = request.body;
 
-    const imovelcaracteristica = await this.service.create({    ImovelCaracteristicaCondominio, 
-                                                                ImovelCaracteristicaValorCondominio, 
-                                                                ImovelCaracteristicaQtdQuartos, 
-                                                                ImovelCaracteristicaCozinha, 
-                                                                ImovelCaracteristicaLavanderia, 
-                                                                ImovelCaracteristicaSala, 
-                                                                ImovelCaracteristicaPiscina, 
-                                                                ImovelCaracteristicaVagaGaragem });
+    const imovelcaracteristica = await this.service.create({    CaracteristicaCondominio, 
+                                                                CaracteristicaValorCondominio, 
+                                                                CaracteristicaQtdQuartos, 
+                                                                CaracteristicaCozinha, 
+                                                                CaracteristicaLavanderia, 
+                                                                CaracteristicaSala, 
+                                                                CaracteristicaPiscina, 
+                                                                CaracteristicaVagaGaragem });
 
     return response.json(imovelcaracteristica).send();
     }

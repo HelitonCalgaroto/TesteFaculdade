@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Pessoa } from 'src/pessoa/pessoa.entity';
+import { TipoPlano } from 'src/tipoplano/tipoplano.entity';
 import { Repository } from 'typeorm';
 import { Plano } from './plano.entity';
 
 interface Request {
-    CodPessoa: number; 
-    CodTipoPlano: number;
+    CodPessoa: Pessoa; 
+    CodTipoPlano: TipoPlano;
 }
 
 @Injectable()

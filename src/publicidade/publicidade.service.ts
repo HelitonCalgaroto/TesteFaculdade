@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Pessoa } from 'src/pessoa/pessoa.entity';
 import { Repository } from 'typeorm';
 import { Publicidade } from './publicidade.entity';
 
 interface Request {
-    CodPessoa: number;
+    CodPessoa: Pessoa;
     PublicidadeTempo: number;
     PublicidadeDestaque: boolean;
     PublicidadeURL: string;

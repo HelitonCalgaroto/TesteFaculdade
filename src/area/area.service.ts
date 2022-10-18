@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Caracteristica } from 'src/imovelcaracteristica/imovelcaracteristica.entity';
 import { Repository } from 'typeorm';
 import { Area } from './area.entity';
 
 interface Request {
-    CodImovelCaracteristica: number;
+    CodImovelCaracteristica: Caracteristica;
     AreaImovel: number;
     AreaCozinha: number;
     AreaQuarto: number;

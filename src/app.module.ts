@@ -20,7 +20,7 @@ import { Estado } from './estado/estado.entity';
 import { EstadoModule } from './estado/estado.module';
 import { Imovel } from './imovel/imovel.entity';
 import { ImovelModule } from './imovel/imovel.module';
-import { ImovelCaracteristica } from './imovelcaracteristica/imovelcaracteristica.entity';
+import { Caracteristica } from './imovelcaracteristica/imovelcaracteristica.entity';
 import { ImovelCaracteristicaModule } from './imovelcaracteristica/imovelcaracteristica.module';
 import { Pessoa } from './pessoa/pessoa.entity';
 import { PessoaModule } from './pessoa/pessoa.module';
@@ -44,7 +44,7 @@ import { TipoServicoModule } from './tiposervico/tiposervico.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '2531',
+      password: 'tomateseco',
       database: 'imobiliaria',
       entities: [ Pessoa,
                   Anuncio,
@@ -57,7 +57,7 @@ import { TipoServicoModule } from './tiposervico/tiposervico.module';
                   Endereco,
                   Estado,
                   Imovel,
-                  ImovelCaracteristica,
+                  Caracteristica,
                   Plano,
                   Publicidade,
                   Rua,

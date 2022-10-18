@@ -1,25 +1,35 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Endereco } from 'src/endereco/endereco.entity';
+import { Caracteristica } from 'src/imovelcaracteristica/imovelcaracteristica.entity';
+import { Pessoa } from 'src/pessoa/pessoa.entity';
+import { TipoImovel } from 'src/tipoimovel/tipoimovel.entity';
+import { TipoServico } from 'src/tiposervico/tiposervico.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Imovel {
     @PrimaryGeneratedColumn()
     idImovel: number;
 
-    @Column()
-    CodEndereco: number;
+    @OneToOne(() => Endereco, endereco=> endereco.idEndereco)
+    @JoinColumn()
+    CodEndereco: Endereco;
 
-    @Column()
-    CodTipoImovel: number;
+    @OneToOne(() => TipoImovel, imoveltipo=> imoveltipo.idTipoImovel)
+    @JoinColumn()
+    CodTipoImovel: TipoImovel;
 
-    @Column()
-    CodTipoServico: number;
+    @OneToOne(() => TipoServico, tipoServico=> tipoServico.idTipoServico)
+    @JoinColumn()
+    CodTipoServico: TipoServico;
 
-    @Column()
-    CodPessoa: number;
+    @OneToOne(() => Pessoa, pessoa=> pessoa.idPessoa)
+    @JoinColumn()
+    CodPessoa: Pessoa;
 
     @Column()
     ImovelValor: number;
 
-    @Column()
-    CodImovelCaracteristica: number;
+    @OneToOne(() => Caracteristica, imovelcaracteristica=> imovelcaracteristica.idCaracteristica)
+    @JoinColumn()
+    CodImovelCaracteristica: Caracteristica;
 }

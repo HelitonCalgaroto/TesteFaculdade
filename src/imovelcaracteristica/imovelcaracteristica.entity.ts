@@ -1,31 +1,31 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class ImovelCaracteristica {
+export class Caracteristica {
     @PrimaryGeneratedColumn()
-    idImovelCaracteristica: number;
+    idCaracteristica: number;
 
     @Column()
-    ImovelCaracteristicaCondominio: boolean;
+    CaracteristicaCondominio: boolean;
 
     @Column()
-    ImovelCaracteristicaValorCondominio: number;
+    CaracteristicaValorCondominio: number;
 
     @Column()
-    ImovelCaracteristicaQtdQuartos: number;
+    CaracteristicaQtdQuartos: number;
 
     @Column()
-    ImovelCaracteristicaCozinha: number;
+    CaracteristicaCozinha: number;
 
     @Column()
-    ImovelCaracteristicaLavanderia: number;
+    CaracteristicaLavanderia: number;
 
     @Column()
-    ImovelCaracteristicaSala: number;
+    CaracteristicaSala: number;
 
     @Column()
-    ImovelCaracteristicaPiscina: number;
+    CaracteristicaPiscina: number;
 
     @Column()
-    ImovelCaracteristicaVagaGaragem: number;
+    CaracteristicaVagaGaragem: number;
 }

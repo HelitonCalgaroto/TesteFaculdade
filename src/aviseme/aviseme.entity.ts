@@ -1,18 +1,24 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Imovel } from 'src/imovel/imovel.entity';
+import { Caracteristica } from 'src/imovelcaracteristica/imovelcaracteristica.entity';
+import { Pessoa } from 'src/pessoa/pessoa.entity';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne, ManyToMany } from 'typeorm';
 
 @Entity()
 export class AviseMe {
     @PrimaryGeneratedColumn()
     idAviseMe: number;
 
-    @Column()
-    CodPessoa: number;
+    @ManyToOne(() => Pessoa, pessoa=> pessoa.idPessoa)
+    @JoinColumn()
+    CodPessoa: Pessoa;
 
-    @Column()
-    CodImovelCaracteristica: number;
+    @ManyToMany(() => Caracteristica, imovelCaracteristica=> imovelCaracteristica.idCaracteristica)
+    @JoinColumn()
+    CodImovelCaracteristica: Caracteristica;
 
-    @Column()
-    CodImovel: number;
+    @ManyToMany(() => Imovel, imovel=> imovel.idImovel)
+    @JoinColumn()
+    CodImovel: Imovel;
 
     @Column()
     AviseMeEncontrado: boolean;

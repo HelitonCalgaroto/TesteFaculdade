@@ -1,12 +1,14 @@
 import { Delete, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Contato } from 'src/contato/contato.entity';
+import { Endereco } from 'src/endereco/endereco.entity';
 import { Repository } from 'typeorm';
 import { Pessoa } from './pessoa.entity';
 
 interface Request {
     PessoaNome: string;
-    CodEndereco: number;
-    CodContato: number;
+    CodEndereco: Endereco;
+    CodContato: Contato;
 }
 
 @Injectable()

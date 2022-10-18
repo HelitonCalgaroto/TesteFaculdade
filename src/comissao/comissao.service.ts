@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Double, Repository } from 'typeorm';
+import { Imovel } from 'src/imovel/imovel.entity';
+import { Pessoa } from 'src/pessoa/pessoa.entity';
+import { Repository } from 'typeorm';
 import { Comissao } from './comissao.entity';
 
 interface Request {
-    CodImovel: number;
-    CodPessoa: number;
+    CodImovel: Imovel;
+    CodPessoa: Pessoa;
     TransacaoComissaoPlataforma: number;
 }
 

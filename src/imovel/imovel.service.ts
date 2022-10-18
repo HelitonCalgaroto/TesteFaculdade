@@ -1,15 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Endereco } from 'src/endereco/endereco.entity';
+import { Caracteristica } from 'src/imovelcaracteristica/imovelcaracteristica.entity';
+import { Pessoa } from 'src/pessoa/pessoa.entity';
+import { TipoImovel } from 'src/tipoimovel/tipoimovel.entity';
+import { TipoServico } from 'src/tiposervico/tiposervico.entity';
 import { Repository } from 'typeorm';
 import { Imovel } from './imovel.entity';
 
 interface Request {
-    CodEndereco: number;
-    CodTipoImovel: number;
-    CodTipoServico: number;
-    CodPessoa: number;
+    CodEndereco: Endereco;
+    CodTipoImovel: TipoImovel;
+    CodTipoServico: TipoServico;
+    CodPessoa: Pessoa;
     ImovelValor: number;
-    CodImovelCaracteristica: number;
+    CodImovelCaracteristica: Caracteristica;
 }
 
 @Injectable()

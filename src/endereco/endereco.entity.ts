@@ -1,21 +1,29 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Bairro } from 'src/bairro/bairro.entity';
+import { Cidade } from 'src/cidade/cidade.entity';
+import { Estado } from 'src/estado/estado.entity';
+import { Rua } from 'src/rua/rua.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
 export class Endereco {
     @PrimaryGeneratedColumn()
-    idEndereco: number;
+    idEndereco: Endereco;
 
-    @Column()
-    CodBairro: number;
+    @ManyToOne(() => Bairro, bairro=> bairro.idBairro)
+    @JoinColumn()
+    CodBairro: Bairro;
 
-    @Column()
-    CodEstado: number;
+    @ManyToOne(() => Estado, estado=> estado.idEstado)
+    @JoinColumn()
+    CodEstado: Estado;
 
-    @Column()
-    CodCidade: number;
+    @ManyToOne(() => Cidade, cidade=> cidade.idCidade)
+    @JoinColumn()
+    CodCidade: Cidade;
 
-    @Column()
-    CodRua: number;
+    @ManyToOne(() => Rua, rua=> rua.idRua)
+    @JoinColumn()
+    CodRua: Rua;
 
     @Column()
     EnderecoNumero: number;

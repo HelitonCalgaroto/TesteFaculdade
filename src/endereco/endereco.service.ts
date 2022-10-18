@@ -1,13 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Bairro } from 'src/bairro/bairro.entity';
+import { Cidade } from 'src/cidade/cidade.entity';
+import { Estado } from 'src/estado/estado.entity';
+import { Rua } from 'src/rua/rua.entity';
 import { Repository } from 'typeorm';
 import { Endereco } from './endereco.entity';
 
 interface Request {
-    CodBairro: number;
-    CodEstado: number;
-    CodCidade: number;
-    CodRua: number;
+    CodBairro: Bairro;
+    CodEstado: Estado;
+    CodCidade: Cidade;
+    CodRua: Rua;
     EnderecoNumero: number;
 }
 

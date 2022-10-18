@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Imovel } from 'src/imovel/imovel.entity';
 import { Repository } from 'typeorm';
 import { Anuncio } from './anuncio.entity';
 
 interface Request {
     AnuncioQntViews: number;
     AnuncioQntLinks: number;
-    CodImovel: number;
+    CodImovel: Imovel;
     AnuncioDestaque: boolean;
 }
 
@@ -40,7 +41,7 @@ export class AnuncioService {
         await this.AnuncioRepository.delete(id);
     }
 
-    async update(   id: number, DadosAtualizar: {}): Promise<void> {
+    async update(id: number, DadosAtualizar: {}): Promise<void> {
         await this.AnuncioRepository.update(id, DadosAtualizar);
     }
 }

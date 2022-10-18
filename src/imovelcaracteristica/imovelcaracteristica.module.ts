@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ImovelCaracteristicaController } from './imovelcaracteristica.controller';
-import { ImovelCaracteristica } from './imovelcaracteristica.entity';
+import { Caracteristica } from './imovelcaracteristica.entity';
 import { ImovelCaracteristicaService } from './imovelcaracteristica.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([ImovelCaracteristica])],
+    imports: [TypeOrmModule.forFeature([Caracteristica])],
     controllers: [ImovelCaracteristicaController],
     providers: [ImovelCaracteristicaService]
 })

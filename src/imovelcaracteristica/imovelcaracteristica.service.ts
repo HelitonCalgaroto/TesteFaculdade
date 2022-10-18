@@ -1,43 +1,43 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ImovelCaracteristica } from './imovelcaracteristica.entity';
+import { Caracteristica } from './imovelcaracteristica.entity';
 
 interface Request {
-    ImovelCaracteristicaCondominio: boolean;
-    ImovelCaracteristicaValorCondominio: number;
-    ImovelCaracteristicaQtdQuartos: number;
-    ImovelCaracteristicaCozinha: number;
-    ImovelCaracteristicaLavanderia: number;
-    ImovelCaracteristicaSala: number;
-    ImovelCaracteristicaPiscina: number;
-    ImovelCaracteristicaVagaGaragem: number;
+    CaracteristicaCondominio: boolean;
+    CaracteristicaValorCondominio: number;
+    CaracteristicaQtdQuartos: number;
+    CaracteristicaCozinha: number;
+    CaracteristicaLavanderia: number;
+    CaracteristicaSala: number;
+    CaracteristicaPiscina: number;
+    CaracteristicaVagaGaragem: number;
 }
 
 @Injectable()
 export class ImovelCaracteristicaService {
     constructor(
-    @InjectRepository(ImovelCaracteristica)
-    private ImovelCaracteristicaRepository: Repository<ImovelCaracteristica>,
+    @InjectRepository(Caracteristica)
+    private ImovelCaracteristicaRepository: Repository<Caracteristica>,
     ) {}
 
-    async create({  ImovelCaracteristicaCondominio, 
-                    ImovelCaracteristicaValorCondominio, 
-                    ImovelCaracteristicaQtdQuartos,
-                    ImovelCaracteristicaCozinha,
-                    ImovelCaracteristicaLavanderia,
-                    ImovelCaracteristicaSala,
-                    ImovelCaracteristicaPiscina,
-                    ImovelCaracteristicaVagaGaragem }: Request): Promise<ImovelCaracteristica> {
+    async create({  CaracteristicaCondominio, 
+                    CaracteristicaValorCondominio, 
+                    CaracteristicaQtdQuartos,
+                    CaracteristicaCozinha,
+                    CaracteristicaLavanderia,
+                    CaracteristicaSala,
+                    CaracteristicaPiscina,
+                    CaracteristicaVagaGaragem }: Request): Promise<Caracteristica> {
     const imovelcaracteristica = await this.ImovelCaracteristicaRepository.create({
-        ImovelCaracteristicaCondominio, 
-        ImovelCaracteristicaValorCondominio, 
-        ImovelCaracteristicaQtdQuartos,
-        ImovelCaracteristicaCozinha,
-        ImovelCaracteristicaLavanderia,
-        ImovelCaracteristicaSala,
-        ImovelCaracteristicaPiscina,
-        ImovelCaracteristicaVagaGaragem
+        CaracteristicaCondominio, 
+        CaracteristicaValorCondominio, 
+        CaracteristicaQtdQuartos,
+        CaracteristicaCozinha,
+        CaracteristicaLavanderia,
+        CaracteristicaSala,
+        CaracteristicaPiscina,
+        CaracteristicaVagaGaragem
     });
 
     await this.ImovelCaracteristicaRepository.save(imovelcaracteristica);
@@ -45,7 +45,7 @@ export class ImovelCaracteristicaService {
     return imovelcaracteristica;
     }
 
-    async findAll(): Promise<ImovelCaracteristica[]> {
+    async findAll(): Promise<Caracteristica[]> {
     const imovelcaracteristica = await this.ImovelCaracteristicaRepository.find();
 
     return imovelcaracteristica;
