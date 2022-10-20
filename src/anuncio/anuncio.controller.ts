@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Put, Delete, Req, Res, Param, Body } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Controller, Get, Post, Put, Delete, Req, Res, Param, Body, HttpException, Patch } from '@nestjs/common';
+import { Request, response, Response } from 'express';
 import { AnuncioService } from './anuncio.service';
 
 @Controller('anuncio')
@@ -12,27 +12,36 @@ class AnuncioController {
 
     const anuncio = await this.service.create({ AnuncioQntViews, AnuncioQntLinks, CodImovel, AnuncioDestaque});
 
-    return response.json(anuncio).send();
+    return response.status(201).json(anuncio).send();
     }
 
     @Get('/')
     async findAll(@Res() response: Response) {
     const anuncios = await this.service.findAll();
-
-    return response.json(anuncios).send();
+    if (!anuncios){
+        throw new HttpException("Not Found", 404)
+    }
+    return response.status(200).json(anuncios).send();
     }
 
     @Put(':id')
-    async update(@Param('id') id: number, @Body() DadosAtualizar: {}) {
-        await this.service.update(id, DadosAtualizar);
-        return "O registro foi atualizado na tabela, conforme os dados informados!";
+    async updatePut(@Param('id') id: number, @Body() dadosAtualizar: {}) {
+        const anuncio = await this.service.update(id, dadosAtualizar);
+        return response.status(200).json(anuncio).send();
     }
 
     @Delete(':id')
     async delete(@Param('id') id: number) {
-        await this.service.delete(id);
-        return "O registro " + id + " foi removido.";
+        const anuncio = await this.service.delete(id);
+        return response.status(200).json(anuncio).send();
     }
+
+    @Patch(':id')
+    async updatePatch(@Param('id') id: number, @Body() dadosAtualizar: {}) {
+        const anuncio = await this.service.update(id, dadosAtualizar);
+        return response.status(200).json(anuncio).send();  
+    }
+
 }
 
 export { AnuncioController };
