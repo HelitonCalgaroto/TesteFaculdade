@@ -5,43 +5,54 @@ import { Repository } from 'typeorm';
 import { Anuncio } from './anuncio.entity';
 
 interface Request {
-    AnuncioQntViews: number;
-    AnuncioQntLinks: number;
-    CodImovel: Imovel;
-    AnuncioDestaque: boolean;
+    anuncioQntViews: number;
+    anuncioQntLinks: number;
+    codImovel: Imovel;
+    anuncioDestaque: boolean;
 }
-
+interface updateDto {
+    anuncioQntViews: number;
+    anuncioQntLinks: number;
+    codImovel: Imovel;
+    anuncioDestaque: boolean;
+}
 @Injectable()
 export class AnuncioService {
     constructor(
     @InjectRepository(Anuncio)
-    private AnuncioRepository: Repository<Anuncio>,
+    private anuncioRepository: Repository<Anuncio>,
     ) {}
 
-    async create({ AnuncioQntViews, AnuncioQntLinks, CodImovel, AnuncioDestaque }: Request): Promise<Anuncio> {
-    const anuncio = await this.AnuncioRepository.create({
-        AnuncioQntViews,
-        AnuncioQntLinks,
-        CodImovel,
-        AnuncioDestaque
-    });
+    async create({ anuncioQntViews, anuncioQntLinks, codImovel, anuncioDestaque }: Request): Promise<Anuncio> {
+        const anuncio = await this.anuncioRepository.create({
+              anuncioQntViews,
+              anuncioQntLinks,
+              codImovel,
+              anuncioDestaque
+        });
 
-    await this.AnuncioRepository.save(anuncio);
+        await this.anuncioRepository.save(anuncio);
 
-    return anuncio;
+        return anuncio;
     }
 
     async findAll(): Promise<Anuncio[]> {
-    const anuncio = await this.AnuncioRepository.find();
+        const anuncio = await this.anuncioRepository.find();
 
-    return anuncio;
+        return anuncio;
     }
 
     async delete(id: number): Promise<void>{
-        await this.AnuncioRepository.delete(id);
+        await this.anuncioRepository.delete(id);
     }
 
-    async update(id: number, DadosAtualizar: {}): Promise<void> {
-        await this.AnuncioRepository.update(id, DadosAtualizar);
+    async update(id: number, {anuncioQntViews, 
+                              anuncioQntLinks, 
+                              codImovel, 
+                              anuncioDestaque}: updateDto): Promise<void> {
+        await this.anuncioRepository.update(id, {anuncioQntViews, 
+                                                 anuncioQntLinks, 
+                                                 codImovel, 
+                                                 anuncioDestaque});
     }
 }

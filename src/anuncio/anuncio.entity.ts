@@ -7,15 +7,15 @@ export class Anuncio {
     idAnuncio: number;
 
     @Column()
-    AnuncioQntViews: number;
+    anuncioQntViews: number;
 
     @Column()
-    AnuncioQntLinks: number;
+    anuncioQntLinks: number;
 
     @OneToOne(() => Imovel, imovel=> imovel.idImovel)
     @JoinColumn()
-    CodImovel: Imovel;
+    codImovel: Imovel;
 
     @Column()
-    AnuncioDestaque: boolean;
+    anuncioDestaque: boolean;
 }

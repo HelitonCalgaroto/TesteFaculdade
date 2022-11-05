@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Req, Res, Param, Body, HttpException, Patch } from '@nestjs/common';
 import { Request, response, Response } from 'express';
-import { AnuncioService } from './anuncio.service';
+import { AnuncioService, updateDto } from './anuncio.service';
 
 @Controller('anuncio')
 class AnuncioController {
@@ -8,25 +8,25 @@ class AnuncioController {
 
     @Post('/')
     async create(@Req() request: Request, @Res() response: Response) {
-    const { AnuncioQntViews, AnuncioQntLinks, CodImovel, AnuncioDestaque } = request.body;
+        const { anuncioQntViews, anuncioQntLinks, codImovel, anuncioDestaque } = request.body;
 
-    const anuncio = await this.service.create({ AnuncioQntViews, AnuncioQntLinks, CodImovel, AnuncioDestaque});
+        const anuncio = await this.service.create({ anuncioQntViews, anuncioQntLinks, codImovel, anuncioDestaque});
 
-    return response.status(201).json(anuncio).send();
+        return response.status(201).json(anuncio).send();
     }
 
     @Get('/')
     async findAll(@Res() response: Response) {
-    const anuncios = await this.service.findAll();
-    if (!anuncios){
-        throw new HttpException("Not Found", 404)
-    }
-    return response.status(200).json(anuncios).send();
+        const anuncios = await this.service.findAll();
+        if (!anuncios){
+            throw new HttpException("Not Found", 404)
+        }
+        return response.status(200).json(anuncios).send();
     }
 
     @Put(':id')
-    async updatePut(@Param('id') id: number, @Body() dadosAtualizar: {}) {
-        const anuncio = await this.service.update(id, dadosAtualizar);
+    async updatePut(@Param('id') id: number, @Req() request: Request, @Res() response : Response) {
+        const anuncio = await this.service.update(id, request);
         return response.status(200).json(anuncio).send();
     }
 
@@ -37,8 +37,14 @@ class AnuncioController {
     }
 
     @Patch(':id')
-    async updatePatch(@Param('id') id: number, @Body() dadosAtualizar: {}) {
-        const anuncio = await this.service.update(id, dadosAtualizar);
+    async updatePatch(@Param('id') id: number, @Body() {anuncioQntViews, 
+                                                        anuncioQntLinks, 
+                                                        codImovel, 
+                                                        anuncioDestaque}: updateDto) {
+        const anuncio = await this.service.update(id, {anuncioQntViews, 
+                                                       anuncioQntLinks, 
+                                                       codImovel, 
+                                                       anuncioDestaque});
         return response.status(200).json(anuncio).send();  
     }
 
